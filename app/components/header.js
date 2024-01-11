@@ -1,9 +1,11 @@
 'use client';
-
+import { atom, useRecoilState } from 'recoil';
 import { Button, Input, Typography } from '@material-tailwind/react';
 import { Logo } from '../constants/svg';
+import { nameState } from '../recoil/atom';
 
 export default function Header() {
+  const [name, setName] = useRecoilState(nameState);
   return (
     <div className='flex w-full justify-between'>
       <div className='flex gap-3'>
@@ -29,6 +31,7 @@ export default function Header() {
           bucket
         </Button>
       </div>
+      <Input label='Name' onChange={(e) => setName(e.target.value)} />
     </div>
   );
 }
